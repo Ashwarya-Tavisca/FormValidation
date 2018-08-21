@@ -91,6 +91,7 @@ function create(){
 	txt = document.createTextNode("Register");
 	button.appendChild(txt) ;
 	button.id = "register" ;
+	button.type="submit";
 	form.appendChild(button) ;
 	
 	var button = document.createElement("button") ;
@@ -104,38 +105,57 @@ document.getElementById("cancel").addEventListener("click",function(event){
 	window.location = "register.html";
 });
 
-document.getElementById("register").addEventListener("click",function(event){    
+document.getElementById("register").addEventListener("mousedown",function(event){    
 	if(validate()){
+		localStorage.setItem("FirstName", firstname.value);
+		localStorage.setItem("LastName", lastname.value);
+		localStorage.setItem("Number", phone.value);
+		localStorage.setItem("Email", email.value);
+		localStorage.setItem("Address", document.getElementById("address").value);
 		window.open("file:///C:/Users/My_Pc/Desktop/TaviscaRegistrationForm/registered.html") ;
 	}
 		
 });
 
 function validate(){
-debugger;
-	
 	if(document.getElementById("firstname").value== "") {
-		 alert("Please fill a valid Name !")
+
+		var paragraph=document.createElement("p");
+		paragraph.innerHTML="Please fill your first name!";
+		var first_name=document.getElementById("firstname");
+		first_name.parentNode.insertBefore(paragraph,first_name.nextSibling);
 		return false ;
 		}	
 	else if(!validateName(document.getElementById("firstname").value))
 		return false;
 	 else if(document.getElementById("lastname").value== "") {
-		alert("Please fill your last name!"); 	
+		var paragraph=document.createElement("p");
+		paragraph.innerHTML="Please fill your last name!";
+		var first_name=document.getElementById("lastname");
+		first_name.parentNode.insertBefore(paragraph,first_name.nextSibling);	
 		return false ;
 		}	
 	 else if(document.getElementById("phone").value== "") {
-		alert("Please fill your phone number!"); 
+		var paragraph=document.createElement("p");
+		paragraph.innerHTML="Please fill a valid phone number!";
+		var first_name=document.getElementById("phone");
+		first_name.parentNode.insertBefore(paragraph,first_name.nextSibling); 
 		return false ;}
 	
 	 else if(document.getElementById("phone").value.length != 10){
-		alert("Please fill a valid 10 digit phone number!"); 
+		var paragraph=document.createElement("p");
+		paragraph.innerHTML="Please fill a valid 10 digit phone number!";
+		var first_name=document.getElementById("phone");
+		first_name.parentNode.insertBefore(paragraph,first_name.nextSibling); 
 		return false ;
 		}
 	 else if(!ValidateEmail(document.getElementById("email").value))
 		return false ;
 	 else if(document.getElementById("address").value== ""){
-		 alert("Please enter a valid address!")
+		var paragraph=document.createElement("p");
+		paragraph.innerHTML="Please enter a valid addresss!";
+		var first_name=document.getElementById("address");
+		first_name.parentNode.insertBefore(paragraph,first_name.nextSibling); 
 		return false;
 	}
 	else
@@ -147,7 +167,10 @@ function validateName(inputText){
 		return true;  
     else  
     {  
-    alert("You have entered an invalid name! Please enter alphabets .");   
+		var paragraph=document.createElement("p");
+		paragraph.innerHTML="Please fill your first name!";
+		var first_name=document.getElementById("firstname");
+		first_name.parentNode.insertBefore(paragraph,first_name.nextSibling);
     return false;  
     } 
 }
@@ -157,7 +180,10 @@ function ValidateEmail(inputText){
     return true;  
     else  
     {  
-    alert("You have entered an invalid email address!");   
+		var paragraph=document.createElement("p");
+		paragraph.innerHTML="You have entered an invalid email address!";
+		var first_name=document.getElementById("email");
+		first_name.parentNode.insertBefore(paragraph,first_name.nextSibling); 
     return false;  
     }  
  }  
